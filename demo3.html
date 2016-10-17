@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .warning{
+      background: #f00;
+      color: yellow;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+
+  <script src="js/react.min.js"></script>
+  <script src="js/react-dom.min.js"></script>
+  <script src="js/browser.js"></script>
+  <script type="text/babel">
+    var warningStyle = 'warning';
+    var style = {
+      color: '#f00',
+      backgroundColor: 'yellow'
+    }
+
+
+
+
+      var HelloWorld = React.createClass({
+        render: function(){
+          return(
+            <div><div style={style}>hello</div><span className={warningStyle}>warning!!!!!</span></div>
+          );
+        }
+      });
+
+
+      ReactDOM.render(<HelloWorld/>,document.getElementById('app'));
+
+
+
+
+
+
+  </script>
+  </body>
+  </html>

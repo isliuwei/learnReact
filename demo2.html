@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .cNode{
+      background: #ccc;
+      color: blue;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+
+
+  <script src="js/react.min.js"></script>
+  <script src="js/react-dom.min.js"></script>
+  <script src="js/browser.js"></script>
+  <script type="text/babel">
+
+
+      var HelloWorld = React.createClass({
+        fn: function(){
+          console.log(this.props);
+        },
+        cd: function(){
+          console.log(this.props.children);
+          console.log(this.props.children[1]);
+        },
+
+        render: function(){
+          return (<div name={this.props.name}><h1>React World!{this.props.name}{this.fn()}{this.cd()}</h1><span>{this.props['data-id']}</span>{this.props.children[1]}</div>);
+        }
+      });
+
+
+      ReactDOM.render(<HelloWorld name="helloTag" data-id="22">HelloWorld <p className="cNode">children p Tag this.props.children[1]</p></HelloWorld>,document.getElementById('app'));
+
+
+
+
+
+
+  </script>
+  </body>
+  </html>

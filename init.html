@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<title>Document</title>
+</head>
+<body>
+	<div id="app"></div>
+
+
+
+
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/react.min.js"></script>
+<script src="js/react-dom.min.js"></script>
+<script src="js/browser.js"></script>
+<script type="text/babel">
+
+	var count = 0;
+
+
+	var HelloWorld = React.createClass({
+		getDefaultProps: function(){
+			console.log('getDefaultProps - 1');
+			return {name: 'modefily'};
+		},
+		getInitialState: function(){
+			console.log('getInitialState - 2');
+			return {
+				count: count++,
+				ready: false
+			};
+		},
+		componentWillMount: function(){
+			console.log('componentWillMount - 3');
+			this.setState({
+				ready: true
+			});
+		},
+		render: function(){
+			console.log('render - 4');
+			return(<h1>hello - {this.props.name} - {""+this.state.ready}</h1>);
+		},
+		componentDidMount: function(){
+			console.log('componentDidMount - 5');
+			console.log(ReactDOM.findDOMNode);
+			//$(this.findDOMNode()).append(' - facebook');
+		}
+
+
+	});
+
+
+
+
+	ReactDOM.render(
+		<HelloWorld name="default"/>,
+		document.getElementById('app')
+	);
+
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

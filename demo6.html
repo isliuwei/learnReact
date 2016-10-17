@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+  <div id="app"></div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <script src="js/react.min.js"></script>
+  <script src="js/react-dom.min.js"></script>
+  <script src="js/browser.js"></script>
+  <script type="text/babel">
+
+
+      var NodeList = React.createClass({
+        
+          render: function(){
+              return (
+                <ol>
+                  {
+                    // React.Children.map(this.props.children, function (child) {
+                    //       return <li>{child}</li>;
+                    // })
+                    //
+
+
+                    this.props.children.map(function(child,index,array){
+                          return (<li ref="list">{child}</li>);
+                    })
+
+
+
+                  }
+                </ol>
+              );
+
+          }
+      });
+
+
+
+
+
+
+
+
+    ReactDOM.render(
+      <NodeList>
+          <span>React</span>
+          <span>Redux</span>
+          <span>React Native</span>
+          <span>Node.js</span>
+      </NodeList>,
+      document.getElementById('app'));
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    ul,li{
+      cursor: pointer;
+    }
+    ul{
+      background: #f00;
+    }
+    li{
+      background: yellow;
+    }
+  </style>
+</head>
+<body onselectstart="return false">
+
+  <div id="app"></div>
+
+
+  <script src="js/react.min.js"></script>
+  <script src="js/react-dom.min.js"></script>
+  <script src="js/browser.js"></script>
+  <script type="text/babel">
+    var style = {
+      background: 'blue',
+      color: '#fff'
+    };
+
+    var ItemList = React.createClass({
+      show: function(e){
+        if(e.nativeEvent.srcElement.tagName.toLowerCase() === 'li'){
+          console.log(e.target.innerHTML);
+        }
+
+      },
+
+      change: function(){
+        this.refs.list1.style.color="#fff";
+        // console.log(this.refs.list1.style);
+      },
+
+      render: function(){
+        return (
+            <ul onClick={this.show}>
+              <li ref='list1' onClick={this.change}>React</li>
+              <li ref='list2' >Redux</li>
+              <li ref='list3' >React Native</li>
+              <li ref='list4' >Facebook</li>
+            </ul>
+        );
+      }
+    });
+
+
+
+
+
+    ReactDOM.render(
+      <ItemList />,
+      document.getElementById('app')
+    );
+
+
+
+
+
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .red{
+      background: red;
+    }
+    .yellow{
+      background: yellow;
+    }
+    .white{
+      background: white;
+    }
+    .green{
+      background: green;
+    }
+    .blue{
+      background: blue;
+    }
+  </style>
+</head>
+<body>
+
+  <div id="app"></div>
+
+
+
+
+<script src="js/react.min.js"></script>
+<script src="js/react-dom.min.js"></script>
+<script src="js/browser.js"></script>
+<script type="text/babel">
+
+    var data = [
+            {name: 'Red', value: 'red'},
+            {name: 'Blue', value: 'blue'},
+            {name: 'Yellow', value: 'yellow'},
+            {name: 'Green', value: 'green'},
+            {name: 'White', value: 'White'}
+        ];
+
+
+
+
+
+
+
+    var TabSelector = React.createClass({
+
+
+        getInitialState: function(){
+          return {
+            color: null,
+            selected: null
+          }
+        },
+
+        handleClick: function(e){
+
+          if(e.nativeEvent.srcElement.tagName.toLowerCase() === 'li'){
+            var color = e.target.getAttribute('data-color');
+
+
+
+
+            this.setState({
+              color:  color,
+              selected: 'selected'
+            });
+          }
+
+
+
+        },
+
+
+        render: function(){
+
+          var _self = this;
+
+
+          var colorStyle = function(param){
+              return {
+                background: param
+              }
+          };
+
+
+            return(
+              <div>
+                <label htmlFor="color">{_self.props.label}</label>
+                <ul>
+                  {
+                    data.map(function(item,index,arry){
+
+                      return (<li onClick={_self.handleClick} data-color={item.value} className={_self.state.color} data-selected={_self.state.selected}>{item.name}</li>);
+                    })
+                  }
+
+                </ul>
+              </div>
+            );
+        }
+    });
+
+
+
+    ReactDOM.render(
+      <TabSelector label="Color" />,
+      document.getElementById('app')
+    );
+
+
+
+
+
+
+
+
+
+
+</script>
+</body>
+</html>

@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+  <div id="example"></div>
+
+  <div id="example1"></div>
+
+
+
+
+
+
+
+
+
+  <script src="js/react.min.js"></script>
+  <script src="js/react-dom.min.js"></script>
+  <script src="js/browser.js"></script>
+  <script type="text/babel">
+      var list = ['React','Redux','React Native'];
+
+      ReactDOM.render(
+        <div>
+          {
+              list.map(function(item){
+                  return <div>{item}</div>;
+              })
+          }
+        </div>,
+        document.getElementById('example')
+      );
+
+
+      var arr = [
+        <div>React</div>,
+        <div>Redux</div>,
+        <div>React Native</div>
+      ];
+
+
+      ReactDOM.render(
+        <div>{arr}</div>,
+        document.getElementById('example1')
+      );
+
+
+
+
+
+
+
+  </script>
+
+</body>
+</html>

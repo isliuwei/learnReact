@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    .warning{
+      background: yellow;
+      color: #f00;
+    }
+    .danger{
+      background: #f00;
+      color: yellow;
+    }
+    .default{
+      background: blue;
+      color: #fff;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="app1"></div>
+  <div id="app2"></div>
+
+
+  <script src="js/react.min.js"></script>
+  <script src="js/react-dom.min.js"></script>
+  <script src="js/browser.js"></script>
+  <script type="text/babel">
+  var getLevel = function(param){
+    if(param === 'warning'){
+      return 'warning';
+    }else{
+      return 'danger';
+    }
+  };
+
+  var DemoShow = React.createClass({
+    render: function(){
+      return(
+
+          // <p className={this.props.level == 'warning'?'warning':'danger'}>DemoShow Component!</p>
+
+          // <p className={getLevel(this.props.level)}>DemoShow Component!</p>
+
+
+          <p className={this.props.level || 'default'}>{this.props.children} -- DemoShow Component!</p>
+
+          /*
+          <p className={
+            (function(obj){
+              if(obj.props.level === 'warning'){
+                return 'warning';
+              }else{
+                return 'danger';
+              }
+            })(this)
+          }>DemoShow Component!</p>
+          */
+
+
+
+      );
+    }
+  });
+
+  ReactDOM.render(<DemoShow level="warning">warning</DemoShow>,document.getElementById('app'));
+  ReactDOM.render(<DemoShow level="danger">danger</DemoShow>,document.getElementById('app1'));
+  ReactDOM.render(<DemoShow>default</DemoShow>,document.getElementById('app2'));
+
+
+
+
+
+
+
+
+  </script>
+  </body>
+  </html>
