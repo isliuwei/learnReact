@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+
+
+
+
+
+  <div id="app"></div>
+
+
+
+
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/react.min.js"></script>
+<script src="js/react-dom.min.js"></script>
+<script src="js/browser.js"></script>
+<script type="text/babel">
+
+
+
+
+  var Son = React.createClass({
+
+    render: function(){
+      console.log('render - 4 - update');
+      return (<p>Son component - {this.props.name}</p>);
+    },
+    componentWillUnmount: function(){
+      console.log('BOOOOOOOOOOOOOOOOOOOOOOOOM!');
+    }
+
+  });
+
+
+  var Father = React.createClass({
+    getInitialState: function(){
+      return {
+        name: ''
+      }
+    },
+    handleChange: function(evt){
+      if(evt.target.value == "消失"){
+        ReactDOM.unmountComponentAtNode(document.getElementById('app')[0]);
+        // return;
+        // console.log('消失嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻嘻');
+      }
+      this.setState({
+        name: evt.target.value
+      });
+    },
+    render: function(){
+        return (
+          <div>
+            <Son name={this.state.name}></Son>
+            <input type="text" placeholder="Father component" onChange={this.handleChange}/>
+            <br/>
+          </div>
+        );
+
+
+
+    }
+  });
+
+
+
+
+
+
+  ReactDOM.render(<Father></Father>,document.getElementById('app'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

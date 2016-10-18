@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+</head>
+<body>
+
+
+
+
+
+
+  <div id="app"></div>
+
+
+
+
+
+<script src="js/jquery-1.11.3.min.js"></script>
+<script src="js/react.min.js"></script>
+<script src="js/react-dom.min.js"></script>
+<script src="js/browser.js"></script>
+<script type="text/babel">
+
+
+
+
+  var Son = React.createClass({
+    componentWillReceiveProps: function(newProps){
+      console.log('componentWillReceiveProps - 1');
+      //newProps.name= '禁止输入';
+      console.log(newProps);
+      console.log(newProps.name);
+    },
+    shouldComponentUpdate: function(){
+      console.log('shouldComponentUpdate - 2');
+      return true;
+    },
+    componentWillUpdate: function(){
+      console.log('componentWillUpdate - 3');
+    },
+    render: function(){
+      console.log('render - 4 - update');
+      return (<p>Son component - {this.props.name}</p>);
+    },
+    componentDinUpdate: function(){
+      console.log('componentDinUpdate - 5');
+      $(ReactDOM.findDOMNode(this)).append(' - facebook');
+    }
+  });
+
+
+  var Father = React.createClass({
+    getInitialState: function(){
+      return {
+        name: ''
+      }
+    },
+    handleChange: function(evt){
+      this.setState({
+        name: evt.target.value
+      });
+    },
+    render: function(){
+      return (
+        <div>
+          <Son name={this.state.name}></Son>
+          <input type="text" placeholder="Father component" onChange={this.handleChange}/>
+          <br/>
+          {/*<Son name={this.props.age}></Son>*/}
+
+        </div>
+      );
+    }
+  });
+
+
+
+
+
+
+  ReactDOM.render(<Father name="Father" age="39"></Father>,document.getElementById('app'));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+</body>
+</html>

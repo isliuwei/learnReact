@@ -19,16 +19,20 @@
 <script src="js/browser.js"></script>
 <script type="text/babel">
 
-	var count = 0;
+$(function(){
 
+	var count = 0;
 
 	var HelloWorld = React.createClass({
 		getDefaultProps: function(){
 			console.log('getDefaultProps - 1');
-			return {name: 'modefily'};
+			return {
+				name: 'modefily'
+			};
 		},
 		getInitialState: function(){
 			console.log('getInitialState - 2');
+			console.log(this.props);
 			return {
 				count: count++,
 				ready: false
@@ -36,18 +40,28 @@
 		},
 		componentWillMount: function(){
 			console.log('componentWillMount - 3');
+
 			this.setState({
 				ready: true
 			});
 		},
 		render: function(){
 			console.log('render - 4');
-			return(<h1>hello - {this.props.name} - {""+this.state.ready}</h1>);
+			console.log(this.props);
+			console.log(this.state);
+
+			return(<h1 ref='virtualDOM'>hello - {this.props.name?this.props.name:'React'} - {""+this.state.ready}</h1>);
 		},
 		componentDidMount: function(){
 			console.log('componentDidMount - 5');
-			console.log(ReactDOM.findDOMNode);
-			//$(this.findDOMNode()).append(' - facebook');
+			console.log(this.refs.virtualDOM);
+			console.log(ReactDOM.findDOMNode(this));
+			console.log(ReactDOM.findDOMNode(this) === this.refs.virtualDOM);
+			//console.log(ReactDOM.findDOMNode);
+			$(ReactDOM.findDOMNode(this)).append(' - facebook');
+		},
+		componentWillReceiveProps: function(){
+			console.log('componentWillReceiveProps - 6');
 		}
 
 
@@ -56,10 +70,24 @@
 
 
 
+
+
+
 	ReactDOM.render(
 		<HelloWorld name="default"/>,
 		document.getElementById('app')
 	);
+
+
+
+
+
+
+
+
+
+});
+
 
 
 
